@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier de Présentation - Ridwane Academy Foot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --red: #d32f2f;
+            --red-dark: #8b0000;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --light-gray: #f4f4f4;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        /* --- RESET & GLOBAL --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #e0e0e0; /* Fond gris pour le mode écran */
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* --- STRUCTURE DE LA PAGE (A4) --- */
+        .page {
+            background: white;
+            width: 210mm; /* Largeur A4 */
+            min-height: 297mm; /* Hauteur A4 */
+            margin: 20px auto;
+            padding: 25mm 20mm;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            page-break-after: always; /* Force une nouvelle page à l'impression */
+        }
+
+        /* --- TYPOGRAPHIE --- */
+        h1, h2, h3, .brand {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+        h1 { font-size: 3.5rem; color: var(--black); line-height: 1.1; }
+        h2 { font-size: 2.2rem; color: var(--red); margin-bottom: 20px; border-bottom: 2px solid var(--red); padding-bottom: 10px; }
+        h3 { font-size: 1.5rem; color: var(--black); margin-bottom: 10px; }
+        p { font-size: 1rem; margin-bottom: 15px; text-align: justify; }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 8px; font-size: 1rem; }
+        .highlight { color: var(--red); font-weight: 700; }
+
+        /* --- PAGE DE GARDE (COVER) --- */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--black) 0%, #1a0000 100%);
+            color: white;
+        }
+        .cover img {
+            width: 150px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(211,47,47,0.5));
+        }
+        .cover h1 {
+            color: white;
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+        }
+        .cover h1 span { color: var(--red); }
+        .cover .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+        .cover .slogan {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--red);
+            border: 2px solid var(--red);
+            padding: 10px 30px;
+            border-radius: 50px;
+            margin-top: 50px;
+        }
+        .cover .date {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- EN-TÊTE DES PAGES --- */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+        .page-header img { height: 40px; }
+        .page-header .doc-title {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- COMPOSANTS --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        
+        .card {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--red);
+        }
+        .card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--black); margin-bottom: 10px; font-size: 1.1rem; }
+        
+        .badge {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .tech-list { list-style: none; margin-left: 0; }
+        .tech-list li { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            padding: 10px; 
+            background: white; 
+            border: 1px solid #eee; 
+            margin-bottom: 10px; 
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .tech-list li::before {
+            content: '✓';
+            color: var(--red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- MISE EN PAGE SPECIFIQUE --- */
+        .image-showcase {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .access-box {
+            background: var(--black);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .access-box h3 { color: var(--red); margin-bottom: 15px; border: none; }
+        .access-box p { color: #ccc; margin-bottom: 5px; font-size: 0.9rem; }
+        .access-box code {
+            background: #222;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #fff;
+            font-family: monospace;
+        }
+
+        /* --- IMPRESSION --- */
+        @media print {
+            body { background: white; }
+            .page { 
+                margin: 0; 
+                box-shadow: none; 
+                width: 100%; 
+                min-height: auto;
+                padding: 20mm; 
+            }
+            /* Force l'impression des couleurs de fond */
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1 : COUVERTURE ================= -->
+    <div class="page cover">
+        <img src="https://www.ridwaneacademyfoot.com/assets/img/logo-raf.png" alt="Logo RAF">
+        <h1>RIDWANE <span>ACADEMY</span> FOOT</h1>
+        <div class="subtitle">Dossier de Présentation Officiel</div>
+        <div class="slogan">Toujours plus haut</div>
+        <div class="date">Présenté le <?= date('d/m/Y') ?> — Darou Ridwane, Kaolack</div>
+    </div>
+
+    <!-- ================= PAGE 2 : LE PROJET ================= -->
+    <div class="page">
+        <div class="page-header">
+            <img src="https://www.ridwaneacademyfoot.com/assets/img/logo-raf.png" alt="RAF">
+            <div class="doc-title">Le Projet Sportif & Éducatif</div>
+        </div>
+
+        <h2>1. Notre Vision</h2>
+        <p>Ridwane Academy Foot (RAF) n'est pas seulement un club de football. C'est une <strong>école de vie</strong>. Notre ambition est de former des jeunes joueurs techniquement solides, mais aussi disciplinés, respectueux, responsables et assidus dans leurs études.</p>
+        
+        <div class="grid-2" style="margin-top: 30px;">
+            <div class="card">
+                <h4>🎯 Notre Mission</h4>
+                <p>Offrir à chaque enfant un encadrement de qualité, un apprentissage progressif du football et un suivi scolaire rigoureux.</p>
+            </div>
+            <div class="card">
+                <h4>⭐ Nos Valeurs</h4>
+                <p><strong>Discipline</strong> : ponctualité et respect.<br>
+                <strong>Formation</strong> : apprentissage adapté à chaque âge.<br>
+                <strong>Excellence</strong> : recherche constante du progrès.</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 40px;">2. Le Contexte Local</h2>
+        <p>Le football est le sport préféré des jeunes de Kaolack. Faute de centre de formation proche et dynamique, de nombreux talents sont contraints de rejoindre des clubs éloignés, ce qui représente un coût et une contrainte pour les familles.</p>
+        <p>RAF répond à ce besoin en créant, au cœur de la communauté (Darou Ridwane / Fass Ridwane), une structure de proximité avec un coût accessible (5 000 FCFA d'inscription, 2 000 FCFA/mois) et un cadre sécurisé.</p>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <span class="badge">Terrain : ASC Avenir (Antenne)</span>
+            <span class="badge">Siège : Darou Ridwane</span>
+            <span class="badge">Public : 8 à 17 ans</span>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 3 : LE SITE INTERNET ================= -->
+    <div class="page">
+        <div class="page-header">
+            <img src="https://www.ridwaneacademyfoot.com/assets/img/logo-raf.png" alt="RAF">
+            <div class="doc-title">La Plateforme Digitale</div>
+        </div>
+
+        <h2>3. Un Site Web Moderne & Officiel</h2>
+        <p>Pour accompagner le développement de l'académie, nous avons développé une plateforme digitale complète, accessible sur ordinateur et mobile.</p>
+
+        <h3>🌐 Le Site Public (Vitrine)</h3>
+        <ul>
+            <li>Présentation de l'académie, des catégories (U10 à Minimes) et des valeurs.</li>
+            <li>Publication des actualités du club.</li>
+            <li>Formulaire de contact et d'inscription direct.</li>
+            <li><strong>Popup "Joueur de la semaine"</strong> pour mettre en avant les performances.</li>
+        </ul>
+
+        <h3>📱 Application Mobile (PWA)</h3>
+        <p>Le site est une <strong>Progressive Web App</strong>. Les parents peuvent l'installer directement sur leur téléphone (Android ou iPhone) sans passer par le Play Store. L'application s'ouvre comme une vraie appli native.</p>
+
+        <h3>⚙️ Les Espaces Administrateurs (Privés)</h3>
+        <p>Deux tableaux de bord sécurisés permettent une gestion autonome du club :</p>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h4>👑 Espace Superadmin (Président)</h4>
+                <p>Vue globale des statistiques, gestion du joueur de la semaine, publication des actualités et gestion de la messagerie.</p>
+            </div>
+            <div class="card">
+                <h4>👔 Espace Secrétaire</h4>
+                <p>Gestion complète de la base des joueurs (Ajout, Modification, Suppression), exportation des listes en <strong>PDF</strong> et importation depuis <strong>Excel</strong>.</p>
+            </div>
+        </div>
+
+        <div class="access-box">
+            <h3>🔑 Accès à la plateforme</h3>
+            <p><strong>Site Public :</strong> <code>https://ridwaneacademyfoot.com/</code></p>
+            <p><strong>Espace Admin :</strong> <code>https://www.ridwaneacademyfoot.com/admin/login.php</code></p>
+            <p><strong>Compte Superadmin :</strong> <code>superadmin@raf.com</code> / <code>super123</code></p>
+            <p><strong>Compte Secrétaire :</strong> <code>secretaire@raf.com</code> / <code>secretaire123</code></p>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 4 : CAPTURES D'ÉCRAN ================= -->
+    <div class="page">
+        <div class="page-header">
+            <img src="https://www.ridwaneacademyfoot.com/assets/img/logo-raf.png" alt="RAF">
+            <div class="doc-title">Aperçu du Site</div>
+        </div>
+
+        <h2>4. Aperçu de la Plateforme</h2>
+        <p>Voici un aperçu visuel de l'interface utilisateur.</p>
+
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 10px;">Interface Visiteur (Accueil)</h3>
+            <!-- Remplace le lien par tes vraies captures d'écran si besoin, ici j'utilise des placeholders -->
+            <img src="https://www.ridwaneacademyfoot.com/assets/img/hero-bg.png" alt="Aperçu Site" class="image-showcase" style="max-height: 250px; object-fit: cover; object-position: top;">
+            
+            <h3 style="font-size: 1.2rem; color: var(--text-light); margin-top: 30px; margin-bottom: 10px;">Interface Administrateur (Superadmin)</h3>
+            <img src="https://www.ridwaneacademyfoot.com/assets/img/about-team.png" alt="Aperçu Admin" class="image-showcase" style="max-height: 250px; object-fit: cover; object-position: top;">
+        </div>
+    </div>
+
+    <!-- ================= PAGE 5 : CONCLUSION ================= -->
+    <div class="page">
+        <div class="page-header">
+            <img src="https://www.ridwaneacademyfoot.com/assets/img/logo-raf.png" alt="RAF">
+            <div class="doc-title">Conclusion & Perspectives</div>
+        </div>
+
+        <h2 style="margin-top: 100px; text-align: center; border: none;">Prêt pour la Saison 2026</h2>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <p style="font-size: 1.2rem; color: var(--text-light);">"Rejoins la famille RAF"</p>
+        </div>
+
+        <div style="background: var(--light-gray); padding: 30px; border-radius: 10px; margin-top: 50px;">
+            <h3 style="color: var(--red);">Les Prochaines Étapes :</h3>
+            <ul class="tech-list" style="margin-top: 20px;">
+                <li>Lancement officiel de la campagne d'inscription.</li>
+                <li>Communication sur les réseaux sociaux (Facebook, Instagram, TikTok).</li>
+                <li>Recherche de sponsors locaux (Pack visibilité sur les maillots).</li>
+                <li>Organisation du premier tournoi officiel de l'académie.</li>
+            </ul>
+        </div>
+
+        <div style="position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; color: #999; font-size: 0.8rem;">
+            <p>Document confidentiel — Ridwane Academy Foot &copy; 2026</p>
+            <p>Contact : 77 602 70 42 | contact@ridwaneacademyfoot.com</p>
+        </div>
+    </div>
+
+</body>
+</html>
